@@ -11,8 +11,4 @@ const printForecast = function (arr: number[]) {
   return finalString;
 };
 
-console.log(
-  `... ${data1[0]}°C in 1 days ... ${data1[1]}°C in 2 days ... ${data1[2]}°C in 3 days`
-);
-
 printForecast(data1);
