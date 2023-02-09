@@ -39,3 +39,5 @@ const dolphinsAvg: ReturnType<typeof calcAverage> = calcAverage(dolphins);
 const koalsAvg: ReturnType<typeof calcAverage> = calcAverage(koalas);
 
 checkWinner(dolphinsAvg, koalsAvg);
+
+export {};

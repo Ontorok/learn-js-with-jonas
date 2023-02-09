@@ -2,3 +2,5 @@
 - Function that create without function keyword and reserve in a variable is called Function Expression
 - In function Declaration , we can invoke it before initialization. but in Function expression we can't do this
 - Arrow function don't get this keyword
+- Any function that is attacted to an object is called Method
+- <code>continue</code> terminates only the current itteration and <code>break</code> terminates the complete loop

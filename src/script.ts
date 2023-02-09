@@ -1,24 +1,26 @@
-type ItemNames = "nasir" | "faruk" | "ashraf";
 interface Person {
-  name: string;
-  age: number;
-  mail: string;
+  firstName: string;
+  lastName: string;
+  birthYear: number;
+  job: string;
+  friends: Array<string>;
+  hasDrivingLisence: boolean;
+  calcAge: Function;
 }
 
-const nasir: Record<ItemNames, Person> = {
-  nasir: {
-    name: "nasir ahmed",
-    age: 30,
-    mail: "nasir@mail.com",
-  },
-  faruk: {
-    name: "nasir ahmed",
-    age: 30,
-    mail: "nasir@mail.com",
-  },
-  ashraf: {
-    name: "nasir ahmed",
-    age: 30,
-    mail: "nasir@mail.com",
+const nasir: Person = {
+  firstName: "Nasir",
+  lastName: "Ahmed",
+  birthYear: 1993,
+  job: "SE",
+  friends: ["Ashraf", "Faruk", "Nasif"],
+  hasDrivingLisence: false,
+
+  calcAge: function () {
+    return 2023 - this.birthYear;
   },
 };
+
+console.log(nasir.calcAge());
+
+export {};

@@ -1,18 +1,14 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const nasir = {
-    nasir: {
-        name: "nasir ahmed",
-        age: 30,
-        mail: "nasir@mail.com",
-    },
-    faruk: {
-        name: "nasir ahmed",
-        age: 30,
-        mail: "nasir@mail.com",
-    },
-    ashraf: {
-        name: "nasir ahmed",
-        age: 30,
-        mail: "nasir@mail.com",
+    firstName: "Nasir",
+    lastName: "Ahmed",
+    birthYear: 1993,
+    job: "SE",
+    friends: ["Ashraf", "Faruk", "Nasif"],
+    hasDrivingLisence: false,
+    calcAge: function () {
+        return 2023 - this.birthYear;
     },
 };
+console.log(nasir.calcAge());
