@@ -1,0 +1,4 @@
+- Function that create with function keyword and a name is called Function declaration.
+- Function that create without function keyword and reserve in a variable is called Function Expression
+- In function Declaration , we can invoke it before initialization. but in Function expression we can't do this
+- Arrow function don't get this keyword
