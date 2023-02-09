@@ -1,26 +1,8 @@
-interface Person {
-  firstName: string;
-  lastName: string;
-  birthYear: number;
-  job: string;
-  friends: Array<string>;
-  hasDrivingLisence: boolean;
-  calcAge: Function;
-}
+const data1: number[] = [1, 2, 3];
+const data2: number[] = [1, 2, 3, 4];
 
-const nasir: Person = {
-  firstName: "Nasir",
-  lastName: "Ahmed",
-  birthYear: 1993,
-  job: "SE",
-  friends: ["Ashraf", "Faruk", "Nasif"],
-  hasDrivingLisence: false,
-
-  calcAge: function () {
-    return 2023 - this.birthYear;
-  },
-};
-
-console.log(nasir.calcAge());
+console.log(
+  `...${data1[0]}°C in 1 days ...${data1[1]}°C in 2 days ...${data1[2]}°C in 3 days`
+);
 
 export {};

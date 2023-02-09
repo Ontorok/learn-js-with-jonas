@@ -1,14 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const nasir = {
-    firstName: "Nasir",
-    lastName: "Ahmed",
-    birthYear: 1993,
-    job: "SE",
-    friends: ["Ashraf", "Faruk", "Nasif"],
-    hasDrivingLisence: false,
-    calcAge: function () {
-        return 2023 - this.birthYear;
-    },
-};
-console.log(nasir.calcAge());
+const data1 = [1, 2, 3];
+const data2 = [1, 2, 3, 4];
+console.log(`...${data1[0]}°C in 1 days ...${data1[1]}°C in 2 days ...${data1[2]}°C in 3 days`);

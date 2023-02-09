@@ -1,43 +1,18 @@
-interface Teams {
-  first: number;
-  second: number;
-  third: number;
-}
+const data1: number[] = [1, 2, 3];
+const data2: number[] = [1, 2, 3, 4];
 
-const dolphins: Teams = {
-  first: 44,
-  second: 23,
-  third: 71,
-};
-
-const koalas: Teams = {
-  first: 65,
-  second: 54,
-  third: 49,
-};
-
-const getNDecimalPlace = function (num: number, place: number = 2): number {
-  return Math.round(num * 10 ** place) / 10 ** place;
-};
-
-const calcAverage = function (team: Teams) {
-  const result = (team.first + team.second + team.third) / 3;
-  return getNDecimalPlace(result);
-};
-
-const checkWinner = function (dolphinsScore: number, koalasScore: number) {
-  if (dolphinsScore >= 2 * koalasScore) {
-    console.log(`Dolphins win (${dolphinsScore} vs. ${koalasScore})`);
-  } else if (koalasScore >= 2 * dolphinsScore) {
-    console.log(`Koalas win (${koalasScore} vs. ${dolphinsScore})`);
-  } else {
-    console.log("No team wins");
+const printForecast = function (arr: number[]) {
+  let temp: string[] = [];
+  for (let i = 0; i < arr.length; i++) {
+    const str = `${arr[i]}°C in ${i + 1} days`;
+    temp.push(str);
   }
+  const finalString = `... ${temp.join(" ... ")}`;
+  return finalString;
 };
 
-const dolphinsAvg: ReturnType<typeof calcAverage> = calcAverage(dolphins);
-const koalsAvg: ReturnType<typeof calcAverage> = calcAverage(koalas);
+console.log(
+  `... ${data1[0]}°C in 1 days ... ${data1[1]}°C in 2 days ... ${data1[2]}°C in 3 days`
+);
 
-checkWinner(dolphinsAvg, koalsAvg);
-
-export {};
+printForecast(data1);
