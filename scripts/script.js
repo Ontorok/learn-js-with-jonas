@@ -6,6 +6,7 @@ const messageParaEl = document.querySelector(".message");
 const numberDivEl = document.querySelector(".number");
 const scoreSpanEl = document.querySelector(".score");
 const bodyEl = document.querySelector("body");
+const againButtonEl = document.querySelector("#again");
 //#endregion
 //#region Functions
 const generateRandomNumber = function (from = 1, to = 20) {
@@ -15,8 +16,14 @@ const generateRandomNumber = function (from = 1, to = 20) {
 const showMessage = function (content) {
     messageParaEl.textContent = content;
 };
+const reset = function () {
+    bodyEl.classList.remove("color-green");
+    numberDivEl.textContent = "?";
+    guessInputEl.value = "";
+    secretNumber = generateRandomNumber();
+};
 //#endregion
-const secretNumber = generateRandomNumber();
+let secretNumber = generateRandomNumber();
 let score = 20;
 checkButtonEl.addEventListener("click", function () {
     const guessNumber = +guessInputEl.value;
@@ -29,7 +36,7 @@ checkButtonEl.addEventListener("click", function () {
     else if (guessNumber === secretNumber) {
         showMessage("🏆Correct Guess!!!");
         numberDivEl.textContent = secretNumber.toString();
-        bodyEl.style.backgroundColor = "#60b347";
+        bodyEl.classList.add("color-green");
         numberDivEl.style.width = "30rem";
     }
     //   When guess high
@@ -56,4 +63,8 @@ checkButtonEl.addEventListener("click", function () {
             scoreSpanEl.textContent = String(0);
         }
     }
+});
+againButtonEl.addEventListener("click", function () {
+    console.log("run");
+    reset();
 });
