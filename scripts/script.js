@@ -13,8 +13,7 @@ const holdBtnEl = document.querySelector(".btn--hold");
 //#endregion
 //#region States
 const scores = [0, 0];
-let player0currentScore = 0;
-let player1currentScore = 0;
+let currentScore = 0;
 let activePlayer = 0;
 //#endregion
 //#region UDF's
@@ -24,29 +23,29 @@ const generateRandomNumber = function (from = 1, to = 6) {
 };
 //#endregion
 //#region Initial Setup
-score0El.textContent = String(player0currentScore);
-score1El.textContent = String(player1currentScore);
+score0El.textContent = String(0);
+score1El.textContent = String(0);
 diceEl.classList.add("hidden");
 //#endregion
 rollBtnEl.addEventListener("click", function () {
     // 1. Generate a random dice roll
-    const randomRoll = generateRandomNumber();
+    const dice = generateRandomNumber();
     // 2. Display dice
-    diceEl.src = `./assets/dice-${randomRoll}.png`;
+    diceEl.src = `./assets/dice-${dice}.png`;
     diceEl.classList.remove("hidden");
     // 3. Checked for rolled 1: if true, add dice to current Score
-    if (randomRoll !== 1) {
-        activePlayer === 0 ? (player0currentScore += randomRoll) : (player1currentScore += randomRoll);
-        const targetPlayer = activePlayer === 0 ? currentScore0El : currentScore1El;
-        const currentPlayerCurrentScore = activePlayer === 0 ? player0currentScore : player1currentScore;
-        targetPlayer.textContent = currentPlayerCurrentScore.toString();
+    let targetEl = document.getElementById(`current--${activePlayer}`);
+    if (dice !== 1) {
+        // add dice to current Score
+        currentScore += dice;
+        targetEl.textContent = currentScore.toString();
     }
     // switch to next player
     else {
+        targetEl.textContent = String(0);
+        currentScore = 0;
         activePlayer = activePlayer === 0 ? 1 : 0;
-        // currentScore = 0;
-        // currentScore0El.textContent = currentScore.toString();
-        // player0SectionEl.classList.remove("player--active");
-        // player1SectionEl.classList.add("player--active");
+        player0SectionEl.classList.toggle("player--active");
+        player1SectionEl.classList.toggle("player--active");
     }
 });
