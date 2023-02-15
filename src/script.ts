@@ -7,7 +7,8 @@ const messageParaEl = document.querySelector(
 const numberDivEl = document.querySelector(".number") as HTMLDivElement;
 const scoreSpanEl = document.querySelector(".score") as HTMLSpanElement;
 const bodyEl = document.querySelector("body") as HTMLBodyElement;
-const againButtonEl = document.querySelector("#again") as HTMLButtonElement;
+const againButtonEl = document.querySelector(".again") as HTMLButtonElement;
+const highScoreSpanEl = document.querySelector(".highscore") as HTMLSpanElement;
 //#endregion
 
 //#region Functions
@@ -36,6 +37,7 @@ const reset = function (): void {
 //#endregion
 let secretNumber = generateRandomNumber();
 let score = 20;
+let highscore = 0;
 
 checkButtonEl.addEventListener("click", function () {
   const guessNumber = +guessInputEl.value;
@@ -50,22 +52,15 @@ checkButtonEl.addEventListener("click", function () {
     numberDivEl.textContent = secretNumber.toString();
     bodyEl.classList.add("color-green");
     numberDivEl.style.width = "30rem";
+    highscore = highscore > score ? highscore : score;
+    highScoreSpanEl.textContent = highscore.toString();
   }
-  //   When guess high
-  else if (guessNumber > secretNumber) {
+  // Refactring
+  else {
+    const message =
+      guessNumber > secretNumber ? "📉Too high!!!" : "📈Too Low!!!";
     if (score > 1) {
-      showMessage("📉Too high!!!");
-      score--;
-      scoreSpanEl.textContent = score.toString();
-    } else {
-      showMessage("💥You lost the game!!!");
-      scoreSpanEl.textContent = String(0);
-    }
-  }
-  //   When guess low
-  else if (guessNumber < secretNumber) {
-    if (score > 1) {
-      showMessage("📈Too Low!!!");
+      showMessage(message);
       score--;
       scoreSpanEl.textContent = score.toString();
     } else {
