@@ -24,10 +24,14 @@ const showMessage = function (content: string): void {
 };
 
 const reset = function (): void {
-  bodyEl.classList.remove("color-green");
-  numberDivEl.textContent = "?";
-  guessInputEl.value = "";
+  score = 20;
   secretNumber = generateRandomNumber();
+  guessInputEl.value = "";
+  numberDivEl.textContent = "?";
+  numberDivEl.style.width = "15rem";
+  scoreSpanEl.textContent = score.toString();
+  messageParaEl.textContent = "Start guessing...";
+  bodyEl.classList.remove("color-green");
 };
 //#endregion
 let secretNumber = generateRandomNumber();
@@ -72,6 +76,5 @@ checkButtonEl.addEventListener("click", function () {
 });
 
 againButtonEl.addEventListener("click", function () {
-  console.log("run");
   reset();
 });
