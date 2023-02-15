@@ -1,66 +1,27 @@
 "use strict";
 //#region Elements
-const checkButtonEl = document.querySelector(".check");
-const guessInputEl = document.querySelector(".guess");
-const messageParaEl = document.querySelector(".message");
-const numberDivEl = document.querySelector(".number");
-const scoreSpanEl = document.querySelector(".score");
-const bodyEl = document.querySelector("body");
-const againButtonEl = document.querySelector(".again");
-const highScoreSpanEl = document.querySelector(".highscore");
+const modalEl = document.querySelector(".modal");
+const overlayEl = document.querySelector(".overlay");
+const closeModalBtnEl = document.querySelector(".close-modal");
+const showModalBtnEls = document.querySelectorAll(".show-modal");
 //#endregion
-//#region Functions
-const generateRandomNumber = function (from = 1, to = 20) {
-    const number = Math.trunc(Math.random() * (to - from + 1)) + from;
-    return number;
+//#region Events
+const openModal = function () {
+    modalEl.classList.remove("hidden");
+    overlayEl.classList.remove("hidden");
 };
-const showMessage = function (content) {
-    messageParaEl.textContent = content;
-};
-const reset = function () {
-    score = 20;
-    secretNumber = generateRandomNumber();
-    guessInputEl.value = "";
-    numberDivEl.textContent = "?";
-    numberDivEl.style.width = "15rem";
-    scoreSpanEl.textContent = score.toString();
-    messageParaEl.textContent = "Start guessing...";
-    bodyEl.classList.remove("color-green");
+const closeModal = function () {
+    modalEl.classList.add("hidden");
+    overlayEl.classList.add("hidden");
 };
 //#endregion
-let secretNumber = generateRandomNumber();
-let score = 20;
-let highscore = 0;
-checkButtonEl.addEventListener("click", function () {
-    const guessNumber = +guessInputEl.value;
-    const hasValue = !!guessInputEl.value;
-    // When there is no input
-    if (!hasValue) {
-        showMessage("⛔ No Number");
-    }
-    //   When win
-    else if (guessNumber === secretNumber) {
-        showMessage("🏆Correct Guess!!!");
-        numberDivEl.textContent = secretNumber.toString();
-        bodyEl.classList.add("color-green");
-        numberDivEl.style.width = "30rem";
-        highscore = highscore > score ? highscore : score;
-        highScoreSpanEl.textContent = highscore.toString();
-    }
-    // Refactring
-    else {
-        const message = guessNumber > secretNumber ? "📉Too high!!!" : "📈Too Low!!!";
-        if (score > 1) {
-            showMessage(message);
-            score--;
-            scoreSpanEl.textContent = score.toString();
-        }
-        else {
-            showMessage("💥You lost the game!!!");
-            scoreSpanEl.textContent = String(0);
-        }
-    }
-});
-againButtonEl.addEventListener("click", function () {
-    reset();
+for (let i = 0; i < showModalBtnEls.length; i++) {
+    const element = showModalBtnEls[i];
+    element.addEventListener("click", openModal);
+}
+closeModalBtnEl.addEventListener("click", closeModal);
+overlayEl.addEventListener("click", closeModal);
+document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && !modalEl.classList.contains("hidden"))
+        closeModal();
 });
